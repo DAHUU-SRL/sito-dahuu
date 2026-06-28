@@ -126,7 +126,8 @@
   .step .num{font-weight:800;font-size:clamp(22px,3vw,30px);color:var(--gold);min-width:56px;line-height:1.15}
   .step h3{font-size:clamp(19px,2.4vw,24px);font-weight:700;color:#fff;margin:0 0 8px}
   .step p{color:var(--muted);font-size:15px;line-height:1.55;max-width:66ch;margin:0}
-  .metrics{display:flex;flex-wrap:wrap;gap:18px;margin-top:42px}
+  .metrics{display:flex;flex-wrap:wrap;gap:18px;margin-top:0}
+  .metrics-h{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:48px 0 18px}
   .metrics div{flex:1 1 280px;padding:22px 24px;border:1px solid rgba(194,161,90,.25);border-radius:14px}
   .metrics strong{display:block;color:#fff;font-size:16px;margin-bottom:6px}
   .metrics span{color:var(--muted);font-size:13.5px}
@@ -200,6 +201,10 @@
   .cside .ctest{color:var(--gold);text-decoration:none;font-size:14px;font-weight:600;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;margin-top:2px}
   .cside .ctest:hover{color:var(--gold-soft)}
   @media(max-width:820px){.nav{display:none}.burger{display:flex}}
+  @media(max-width:760px){
+    .beat h1,.beat .lede{text-shadow:0 2px 26px rgba(0,0,0,.55)}
+    .beat .sub,.beat .eyebrow{text-shadow:0 1px 16px rgba(0,0,0,.5)}
+  }
 </style>
 </head>
 <body>
@@ -275,10 +280,6 @@
         <li class="step reveal"><span class="num">04</span><div><h3>Messa in esercizio</h3><p>Lo portiamo nei flussi di lavoro reali, applichiamo la cura del sapere ufficiale mantenendo tutto sempre sotto la responsabilità umana.</p></div></li>
         <li class="step reveal"><span class="num">05</span><div><h3>Estensione</h3><p>Dal primo dominio, lo stesso metodo si allarga alle altre funzioni dell'impresa.</p></div></li>
       </ol>
-      <div class="metrics">
-        <div class="reveal"><strong>Tempo per una risposta affidabile</strong><span>quanto ne serve oggi, quanto ne servirà domani</span></div>
-        <div class="reveal"><strong>Costo della conoscenza viva</strong><span>e quanto vale, per l'impresa, tenerla tale</span></div>
-      </div>
     </section>
 
     <section class="section" id="diagnosi">
@@ -324,7 +325,6 @@
       </div>
     </section>
   </div>
-
 
   <footer class="foot">
     <div class="foot-top">
@@ -528,6 +528,9 @@
     renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
     mat.uniforms.uPix.value=Math.min(window.devicePixelRatio||1,2);
     vh=h; storyTop=story?story.offsetTop:0;
+    // mantieni l'intera forma dentro la larghezza visibile (schermi stretti/verticali)
+    const asp=w/h, tan=0.520567, half=300*tan*asp;   // semi-larghezza visibile a z=300
+    cloud.scale.setScalar(Math.min(1, (half*0.92)/122));
   }
   window.addEventListener('resize',resize); resize();
 
