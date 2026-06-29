@@ -205,6 +205,20 @@
     .beat h1,.beat .lede{text-shadow:0 2px 26px rgba(0,0,0,.55)}
     .beat .sub,.beat .eyebrow{text-shadow:0 1px 16px rgba(0,0,0,.5)}
   }
+
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  @media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.services{grid-template-columns:1fr}}
+  .svc{padding:26px 24px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:rgba(255,255,255,.02)}
+  .svc .n{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:12px}
+  .svc h3{color:#fff;font-size:18px;font-weight:700;margin:0 0 8px;line-height:1.2}
+  .svc p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+  .pillars{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:40px;border-top:1px solid rgba(194,161,90,.2);padding-top:40px}
+  @media(max-width:760px){.pillars{grid-template-columns:1fr;gap:30px}}
+  .pillar h3{display:flex;align-items:center;gap:11px;color:#fff;font-size:19px;font-weight:700;margin:0 0 14px;letter-spacing:-.01em}
+  .pillar h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none}
+  .pillar p{color:var(--muted);font-size:14.5px;line-height:1.62;margin:0}
+  .pillar p b{color:#d3d4de;font-weight:600}
 </style>
 </head>
 <body>
@@ -215,7 +229,7 @@
   <header class="bar" id="bar">
     <a class="mark" href="#story" aria-label="DAHUU"><svg class="logo" viewBox="48 74 216 150" role="img" aria-label="DAHUU" xmlns="http://www.w3.org/2000/svg"><path d="M87.34,96.02v104.84c0,8.81-3.61,15.02-14.73,15.02h-16.61V81h16.61c10.97,0,14.73,6.21,14.73,15.02ZM81.85,198.55v-100.22c0-6.35-1.59-11.84-10.25-11.84h-10.11v123.9h10.25c8.66,0,10.11-5.49,10.11-11.84ZM101.49,215.87h-5.49l10.97-134.87h9.39l10.97,134.87h-5.49l-3.03-37.55c-1.3,1.88-3.18,4.33-5.49,7.8-5.49,7.94-10.54,13.72-11.41,25.27l-.43,4.48ZM103.51,191.04c1.88-3.03,4.33-6.5,7.22-10.54,7.22-10.4,6.64-9.68,6.64-18.63,0-1.01-5.05-63.54-5.49-70.04h-.29l-8.09,99.21ZM144.38,81h-5.34v134.87h5.34v-40.29c0-9.53,6.35-17.33,11.99-25.42,3.47-5.05,6.21-8.95,8.52-12.56v78.27h5.34V81h-5.34v38.12c0,8.95-4.04,15.16-11.26,25.42-3.75,5.49-6.79,9.68-9.24,13.43v-76.97h0ZM207.62,81h5.49v120.72c0,8.81-3.61,15.02-14.73,15.02h-2.02c-10.83,0-14.58-6.21-14.58-16.46v-119.28h5.49v118.41c0,6.35,1.44,11.84,10.25,11.84s10.11-5.49,10.11-11.84v-118.41h0ZM250.51,81h5.49v120.72c0,8.81-3.61,15.02-14.73,15.02h-2.02c-10.83,0-14.58-6.21-14.58-16.46v-119.28h5.49v118.41c0,6.35,1.44,11.84,10.25,11.84s10.11-5.49,10.11-11.84v-118.41h0Z" fill="currentColor"/></svg></a>
     <nav class="nav">
-      <a href="#story">Metodologia</a>
+      <a href="#chisiamo">Chi siamo</a>
       <a href="#processo">Processo</a>
       <a href="#team">Team</a>
       <a href="#contatti">Contatti</a>
@@ -225,7 +239,7 @@
   </header>
   <div class="mobile" id="mobile">
     <div class="mhead"><svg class="logo" viewBox="48 74 216 150" role="img" aria-label="DAHUU" xmlns="http://www.w3.org/2000/svg"><path d="M87.34,96.02v104.84c0,8.81-3.61,15.02-14.73,15.02h-16.61V81h16.61c10.97,0,14.73,6.21,14.73,15.02ZM81.85,198.55v-100.22c0-6.35-1.59-11.84-10.25-11.84h-10.11v123.9h10.25c8.66,0,10.11-5.49,10.11-11.84ZM101.49,215.87h-5.49l10.97-134.87h9.39l10.97,134.87h-5.49l-3.03-37.55c-1.3,1.88-3.18,4.33-5.49,7.8-5.49,7.94-10.54,13.72-11.41,25.27l-.43,4.48ZM103.51,191.04c1.88-3.03,4.33-6.5,7.22-10.54,7.22-10.4,6.64-9.68,6.64-18.63,0-1.01-5.05-63.54-5.49-70.04h-.29l-8.09,99.21ZM144.38,81h-5.34v134.87h5.34v-40.29c0-9.53,6.35-17.33,11.99-25.42,3.47-5.05,6.21-8.95,8.52-12.56v78.27h5.34V81h-5.34v38.12c0,8.95-4.04,15.16-11.26,25.42-3.75,5.49-6.79,9.68-9.24,13.43v-76.97h0ZM207.62,81h5.49v120.72c0,8.81-3.61,15.02-14.73,15.02h-2.02c-10.83,0-14.58-6.21-14.58-16.46v-119.28h5.49v118.41c0,6.35,1.44,11.84,10.25,11.84s10.11-5.49,10.11-11.84v-118.41h0ZM250.51,81h5.49v120.72c0,8.81-3.61,15.02-14.73,15.02h-2.02c-10.83,0-14.58-6.21-14.58-16.46v-119.28h5.49v118.41c0,6.35,1.44,11.84,10.25,11.84s10.11-5.49,10.11-11.84v-118.41h0Z" fill="currentColor"/></svg><button class="burger open" id="burgerClose" aria-label="Chiudi menu"><span></span><span></span><span></span></button></div>
-    <a href="#story">Metodologia</a>
+    <a href="#chisiamo">Chi siamo</a>
     <a href="#processo">Processo</a>
     <a href="#team">Team</a>
     <a href="#contatti">Contatti</a>
@@ -269,9 +283,25 @@
   </main>
 
   <div class="page">
+    <section class="section" id="chisiamo">
+      <div class="sec-eyebrow reveal">Chi siamo</div>
+      <h2 class="sec-title reveal">Analizzare il sapere, riconoscere il valore, sviluppare il talento.</h2>
+      <p class="sec-lead reveal">DAHUU è una holding specializzata nell'integrazione degli strumenti di Intelligenza Artificiale all'interno delle aziende. Aiutiamo le imprese a costruire la propria mente collettiva: il sapere di tutti, connesso in un contesto operativo che amplifica talento e produttività. Lo facciamo dentro i confini dell'impresa, perché ciò che un'azienda conosce è il suo patrimonio — e un patrimonio si affida esclusivamente ad infrastrutture che si possono controllare, proteggere e mantenere.</p>
+
+      <div class="services">
+        <div class="svc reveal"><h3>Cabina di regia strategica</h3><p>Professionisti senior leggono le sfide dell'azienda e disegnano la trasformazione, tenendo insieme business e tecnologia.</p></div>
+        <div class="svc reveal"><h3>Qualità del dato</h3><p>Un contesto efficace nasce da dati affidabili: puliamo, strutturiamo e validiamo le fonti, così ogni risposta poggia su basi solide.</p></div>
+        <div class="svc reveal"><h3>Contesto operativo</h3><p>Trasformiamo dati e documenti dispersi in una memoria viva e interconnessa: la mente collettiva su cui l'impresa lavora ogni giorno.</p></div>
+        <div class="svc reveal"><h3>Infrastruttura sovrana</h3><p>On-premise o cloud europeo che controlli, su modelli open-weight e con dati cifrati. La sicurezza del dato è l'area meno governata dell'AI: noi partiamo da lì, e il sapere resta dentro i tuoi confini.</p></div>
+        <div class="svc reveal"><h3>Governance e conformità</h3><p>Conforme per costruzione: GDPR, <b>AI Act</b> per il rischio e la sorveglianza umana, normative correlate. Ogni risposta è tracciabile, ogni decisione resta in mano ad un essere umano.</p></div>
+        <div class="svc reveal"><h3>Formazione e adozione</h3><p>Accompagniamo le persone nell'uso quotidiano dell'AI: competenze che crescono e talento che si sviluppa, non strumenti calati dall'alto.</p></div>
+      </div>
+
+    </section>
+
     <section class="section" id="processo">
       <div class="sec-eyebrow reveal">Come lavoriamo</div>
-      <h2 class="sec-title reveal">Cinque passi, nessuna rivoluzione</h2>
+      <h2 class="sec-title reveal">Cinque passi,<br>una rivoluzione silenziosa</h2>
       <p class="sec-lead reveal">Per partire non serve riorganizzare l'azienda: si sceglie un punto ad alto valore ed è lì che si costruisce il primo contesto operativo.</p>
       <ol class="steps">
         <li class="step reveal"><span class="num">01</span><div><h3>Diagnosi del contesto</h3><p>Capiamo dove vive oggi il tuo sapere — archivio, dataset o contesto — e fotografiamo, senza zone grigie, il punto di partenza.</p></div></li>
@@ -290,9 +320,9 @@
     </section>
 
     <section class="section" id="team">
-      <div class="sec-eyebrow reveal">Chi siamo</div>
-      <h2 class="sec-title reveal">Le persone dietro DAHUU</h2>
-      <p class="sec-lead reveal">Una holding di intelligenza artificiale che costruisce infrastruttura sovrana per l'impresa italiana.</p>
+      <div class="sec-eyebrow reveal">Team</div>
+      <h2 class="sec-title reveal">Il nostro sapere umano</h2>
+      <p class="sec-lead reveal">Un team di esperti che miscela esperienza nel campo della business strategy, della trasformazione digitale attraverso il dominio di sistemi complessi e nuove tecnologie.</p>
       <div class="team">
         <div class="member reveal"><div class="ava"><img src="https://dahuu.ai/assets/angelo-piazzolla-BcwBMOe8.jpg" alt="Angelo Piazzolla" loading="lazy"></div><h3>Angelo Piazzolla</h3><p class="role">CEO</p><p class="bio">Visionario strategico con esperienza ventennale nella trasformazione digitale delle imprese.</p></div>
         <div class="member reveal"><div class="ava"><img src="https://dahuu.ai/assets/davide-domeneghini-BcBhdwxa.jpg" alt="Davide Domeneghini" loading="lazy"></div><h3>Davide Domeneghini</h3><p class="role">CTO &mdash; Chief Technology Officer</p><p class="bio">Architetto di sistemi complessi con focus su scalabilità e sicurezza delle piattaforme AI.</p></div>
@@ -334,7 +364,7 @@
       </div>
       <div class="foot-col">
         <h4>Esplora</h4>
-        <a href="#story">Metodologia</a>
+        <a href="#chisiamo">Chi siamo</a>
         <a href="#processo">Processo</a>
         <a href="#diagnosi">Diagnosi del contesto</a>
         <a href="#team">Team</a>
