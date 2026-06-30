@@ -36,7 +36,7 @@
   .prog{position:fixed;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-soft));z-index:4}
 
   main{position:relative;z-index:2}
-  .act{min-height:100svh;display:flex;align-items:center;padding:0 clamp(20px,7vw,120px)}
+  .act{position:relative;z-index:2;min-height:100svh;display:flex;align-items:center;padding:0 clamp(20px,7vw,120px)}
   .beat{max-width:860px;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}
   .beat.in{opacity:1;transform:none}
 
@@ -248,39 +248,11 @@
   </div>
   <div class="cue" id="cue"><span>scorri</span><span class="line"></span></div>
 
-  <main id="story">
-    <section class="act"><div class="beat" data-b="0">
+  <section class="act" id="story"><div class="beat" data-shape="0">
       <div class="eyebrow">Oltre l'artificiale</div>
       <h1>Intelligenza<br>Aumentata</h1>
       <p class="sub">Diamo forma, valore e protezione al sapere della tua azienda.</p>
     </div></section>
-
-    <section class="act"><div class="beat" data-b="1">
-      <p class="lede">Ciò che fa funzionare la tua impresa è il know how delle persone.</p>
-      <p class="sub">Un sapere a volte tramandato e spesso non custodito.</p>
-    </div></section>
-
-    <section class="act"><div class="beat" data-b="2">
-      <p class="lede">L'uscita di un dipendente può corrispondere ad una perdita di conoscenza.</p>
-      <p class="sub">L'impresa non perde un dipendente: perde una parte di sé.</p>
-    </div></section>
-
-    <section class="act"><div class="beat" data-b="3">
-      <p class="lede">Il vantaggio non è nei dati.</p>
-      <p class="sub">Non è rilevante quanti dati possiedi ma come si collegano e diventano decisioni.</p>
-    </div></section>
-
-    <section class="act"><div class="beat" data-b="4">
-      <p class="lede">Noi trasformiamo i dati in contesto. Il contesto è memoria viva.</p>
-      <p class="sub">Interconnessa. Una memoria che si aggiorna mentre lavori e permane quando le persone cambiano.</p>
-    </div></section>
-
-    <section class="act"><div class="beat" data-b="5">
-      <p class="lede">Il contesto operativo<span class="soft">sovrano.</span></p>
-      <p class="sub">Dentro i tuoi confini. Sotto il tuo controllo. Ciò che sai diventa ciò che vali.</p>
-      <a class="cta" href="#diagnosi">Fai il test del contesto <span class="arr">&rarr;</span></a>
-    </div></section>
-  </main>
 
   <div class="page">
     <section class="section" id="chisiamo">
@@ -298,7 +270,26 @@
       </div>
 
     </section>
+  </div>
 
+  <section class="act"><div class="beat" data-shape="3">
+      <p class="lede">Il vantaggio non è nei dati.</p>
+      <p class="sub">Non è rilevante quanti dati possiedi ma come si collegano e diventano decisioni.</p>
+    </div></section>
+  <section class="act"><div class="beat" data-shape="4">
+      <p class="lede">DAHUU trasforma i dati in contesto. Il contesto è memoria viva.</p>
+      <p class="sub">Interconnessa. Una memoria che si aggiorna mentre lavori e permane quando le persone cambiano.</p>
+    </div></section>
+  <section class="act"><div class="beat" data-shape="1">
+      <p class="lede">Ciò che fa funzionare ogni impresa è il suo know how, spesso legato alla persona.</p>
+      <p class="sub">Un sapere a volte tramandato e spesso non custodito.</p>
+    </div></section>
+  <section class="act"><div class="beat" data-shape="2">
+      <p class="lede">Se una persona va via, si rischia di perdere know how.</p>
+      <p class="sub">L'impresa non perde solo una persona, perde anche una parte di sé.</p>
+    </div></section>
+
+  <div class="page">
     <section class="section" id="processo">
       <div class="sec-eyebrow reveal">Come lavoriamo</div>
       <h2 class="sec-title reveal">Cinque passi,<br>una rivoluzione silenziosa</h2>
@@ -311,14 +302,12 @@
         <li class="step reveal"><span class="num">05</span><div><h3>Estensione</h3><p>Dal primo dominio, lo stesso metodo si allarga alle altre funzioni dell'impresa.</p></div></li>
       </ol>
     </section>
-
     <section class="section" id="diagnosi">
       <div class="sec-eyebrow reveal">Diagnosi del contesto</div>
       <h2 class="sec-title reveal">A che punto è il tuo sapere?</h2>
       <p class="sec-lead reveal">Dodici domande, due minuti. Scopri se la tua azienda è un archivio, un dataset o un contesto operativo — e cosa possiamo fare per salire di livello.</p>
       <div class="quiz" id="quiz"></div>
     </section>
-
     <section class="section" id="team">
       <div class="sec-eyebrow reveal">Team</div>
       <h2 class="sec-title reveal">Il nostro sapere umano</h2>
@@ -331,7 +320,6 @@
         <div class="member reveal"><div class="ava"><img src="https://dahuu.ai/assets/stefano-girard-7WAdPX8T.png" alt="Stefano Girard" loading="lazy"></div><h3>Stefano Girard</h3><p class="role">AI Specialist</p><p class="bio">Specialista in soluzioni di Intelligenza Artificiale e integrazione di modelli avanzati.</p></div>
       </div>
     </section>
-
     <section class="section" id="contatti">
       <div class="sec-eyebrow reveal">Parliamone</div>
       <h2 class="sec-title reveal">Partiamo dal tuo contesto</h2>
@@ -431,6 +419,11 @@
 
   const mobile=window.innerWidth<760;
   let storyTop=0, vh=window.innerHeight, u=0; const story=document.getElementById('story');
+  // morph guidato dai centri reali dei beat nel documento: le sezioni-pagina interlacciate non sfasano la nuvola
+  const beatEls=Array.from(document.querySelectorAll('.beat'));
+  const bshape=beatEls.map(b=>+b.dataset.shape||0);
+  let bc=[];
+  function measureBeats(){ bc=beatEls.map(b=>{ const s=b.closest('.act')||b; const r=s.getBoundingClientRect(); return r.top+window.scrollY+r.height/2; }); }
   const N=mobile?4200:9000;
 
   // ---------- shape generators (each returns Float32Array length 3N, same N) ----------
@@ -557,7 +550,7 @@
     const w=window.innerWidth,h=window.innerHeight;
     renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
     mat.uniforms.uPix.value=Math.min(window.devicePixelRatio||1,2);
-    vh=h; storyTop=story?story.offsetTop:0;
+    vh=h; storyTop=story?story.offsetTop:0; measureBeats();
     // mantieni l'intera forma dentro la larghezza visibile (schermi stretti/verticali)
     const asp=w/h, tan=0.520567, half=300*tan*asp;   // semi-larghezza visibile a z=300
     cloud.scale.setScalar(Math.min(1, (half*0.92)/122));
@@ -568,34 +561,44 @@
   function loop(){
     requestAnimationFrame(loop);
     const t=clock.getElapsedTime();
-    const uTarget=Math.max(0,Math.min(5,(window.scrollY-storyTop)/vh));
+    // u guidato dai centri reali dei beat (sezioni-pagina interlacciate non sfasano il morph)
+    if(!bc.length) measureBeats();
+    const vc=window.scrollY+vh*0.5, last=Math.max(0,bc.length-1);
+    let i=0; while(i<last && vc>=bc[i+1]) i++;
+    let frac=0; if(i<last){ const span=bc[i+1]-bc[i]; frac=span>0?(vc-bc[i])/span:0; }
+    frac=Math.max(0,Math.min(1,frac));
+    const uTarget=i+frac;
     u+=(uTarget-u)*0.12;
 
-    // forma ferma attorno al centro di ogni sezione, morph nei vuoti
-    let seg=Math.floor(u); if(seg<0)seg=0; if(seg>4)seg=4;
-    const frac=u-seg, aH=0.34, bH=0.66;
-    let lt; if(frac<=aH) lt=0; else if(frac>=bH) lt=1; else lt=(frac-aH)/(bH-aH);
+    // forma ferma attorno al centro di ogni beat, morph nei vuoti
+    let seg=Math.floor(u); const maxSeg=Math.max(0,last-1);
+    if(seg<0)seg=0; if(seg>maxSeg)seg=maxSeg;
+    const fr=u-seg, aH=0.34, bH=0.66;
+    let lt; if(fr<=aH) lt=0; else if(fr>=bH) lt=1; else lt=(fr-aH)/(bH-aH);
 
+    const sa=bshape[seg], sb=bshape[Math.min(seg+1,last)];
     if(seg!==curSeg){
-      geo.attributes.position.array.set(T[seg]);   geo.attributes.position.needsUpdate=true;
-      geo.attributes.aTarget.array.set(T[seg+1]);  geo.attributes.aTarget.needsUpdate=true;
+      geo.attributes.position.array.set(T[sa]);  geo.attributes.position.needsUpdate=true;
+      geo.attributes.aTarget.array.set(T[sb]);   geo.attributes.aTarget.needsUpdate=true;
       curSeg=seg;
     }
     mat.uniforms.uMix.value=lt;
-    mat.uniforms.uWarm.value=KW[seg]+(KW[seg+1]-KW[seg])*smooth(lt);
+    mat.uniforms.uWarm.value=KW[sa]+(KW[sb]-KW[sa])*smooth(lt);
     mat.uniforms.uTime.value=REDUCE?0:t;
 
     const spin=REDUCE?0:t*0.05;
     cloud.rotation.y=spin; cloud.rotation.x=-0.12+Math.sin(t*0.1)*0.04*(REDUCE?0:1);
 
-    // collegamenti: rete 3D, reticolo poi sfera, con stacco invisibile nel passaggio
-    const base=smooth((u-2.5)/0.35)*(1-smooth((u-4.2)/0.6));
-    const dip=1-Math.exp(-Math.pow((u-3.5)/0.16,2));
-    const lineVis=Math.max(0, base*dip);
+    // collegamenti: rete 3D visibile sui beat "connessi" (lattice=3 / memoria=4)
+    const conA=(sa===3||sa===4), conB=(sb===3||sb===4);
+    let lineVis=(conA&&conB)?1:conA?(1-smooth(lt)):conB?smooth(lt):0;
+    if((sa===3&&sb===4)||(sa===4&&sb===3)){ const dd=(lt-0.5)/0.16; lineVis*=1-Math.exp(-dd*dd); } // stacco invisibile nello switch topologico
+    lineVis=Math.max(0,lineVis);
     lmat.opacity=lineVis*0.85;
     if(lineVis>0.012){
-      const E=(u>=3.5)?edgesSph:edgesLat;
-      const m2=lt*lt*(3-2*lt), A=T[seg], B=T[seg+1];
+      const dom=(lt<0.5)?sa:sb;
+      const E=(dom===4)?edgesSph:edgesLat;
+      const m2=lt*lt*(3-2*lt), A=T[sa], B=T[sb];
       for(let e=0;e<E.length;e++){ const ga=E[e][0],gb=E[e][1],o=e*6;
         lpos[o]  =A[ga*3]  +(B[ga*3]  -A[ga*3])*m2;
         lpos[o+1]=A[ga*3+1]+(B[ga*3+1]-A[ga*3+1])*m2;
